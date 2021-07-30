@@ -20,8 +20,9 @@ const protect = asyncHandler(async(req, res, next)=>{
             throw new Error('Not authorized, You need to be logged in first')
         }
     }else if(!token){
+        
         res.status(401)
-        res.json({message : "You need to be logged in first"})
+        res.json({ message : "You need to be logged in first"})
         throw new Error('Not authorizes, no token, You need to be logged in first')
     }
 })
