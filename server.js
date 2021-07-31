@@ -2,7 +2,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 
 import connect from './config/db.js'
-import userRoutes from './routes/route.js'
+import userRoutes from './routes/userRoute.js'
+import orderRoutes from './routes/orderRoute.js'
 
 const app = express()
 const PORT = process.env.PORT || 6001
@@ -17,9 +18,8 @@ app.listen(PORT, ()=>{
 /* Imported and custom middleware */
 app.use(express.json())
 app.use('/api/users', userRoutes)
-// app.get('/', (req, res)=>{
-//     res.send('Home page')
-// })
+app.use('/api/orders', orderRoutes)
+
 
 // app.use(connect)
 
