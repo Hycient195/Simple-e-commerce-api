@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add order</title>
+
+
+    <style>
+        form{
+            border : 1px solid silver;
+            width : 70%;
+            margin : 0 auto;
+        }
+         #submit{
+            background-color: burlywood;
+        }
+    </style>
+</head>
+<body>
+    <form >
+        <label for="firstName">
+            Item Name
+            <input id="itemName" name="itemName" type="text">
+        </label>
+        <br>
+        <label for="lastName">
+            Item Quantity
+            <input id="itemQuantity" name="itemQuantity" type="number">
+        </label>
+        <br>
+        <label for="email">
+            Item Price
+            <input id="itemPrice" name="itemPrice" type="number">
+        </label>
+        <br>
+        <hr>
+        <input id="submit" type="submit">
+    </form>
+</body>
+
+<script>
+    const form = document.querySelector('form')
+
+    form.addEventListener('submit', async (e)=>{
+        e.preventDefault()
+
+        const itemName = form.itemName.value
+        const itemQuantity = form.itemQuantity.value
+        const itemPrice = form.itemPrice.value
+
+        // console.log(itemName, itemPrice, itemQuantity)
+
+        const userToken = await fetch()
+        const res = await fetch('http://localhost:7000/api/orders',{
+            method : 'POST',
+            credentials : "include",
+            headers : {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMDY5OGJmYTlhOWY3MmEzMjYxN2Y3MyIsImlhdCI6MTYyNzgyMjI3MSwiZXhwIjoxNjI4MDgxNDcxfQ.52uK6EaCtGwjlaJ4RCY7OL6kCBj6vaPj-YMXD8PsBrE',
+                
+            },
+            body : JSON.stringify({
+                items : [{
+                    itemName, itemQuantity, itemPrice
+                }]
+            })
+        })
+
+        const data = await res.json()
+        console.log(data)
+    })
+</script>
+</html>

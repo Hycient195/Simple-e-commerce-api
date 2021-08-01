@@ -33,7 +33,7 @@ const signup = asyncHandler(async(req, res)=>{
             email : user.email,
             token : generateToken(user._id)
         })
-        console.log('User signed up')
+        console.log('User signed up', generateToken(user._id))
     }
     /* If error is encountered in creating new user */
     else{
@@ -139,5 +139,6 @@ const deleteUser = asyncHandler( async(req, res)=>{
         throw new Error('Unable to delete user')
     }
 })
+
 
 export { signup, login, getUsers, getUserById, updateUser, deleteUser }

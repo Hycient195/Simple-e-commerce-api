@@ -23,8 +23,8 @@ const protect = asyncHandler(async(req, res, next)=>{
         
         res.status(401)
         res.json({ message : "You need to be logged in first"})
-        throw new Error('Not authorizes, no token, You need to be logged in first')
+        throw new Error('Not authorized, no token, You need to be logged in first')
     }
 })
 
-export {protect}
+export { protect }
